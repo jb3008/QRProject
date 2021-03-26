@@ -6,18 +6,18 @@ var bodyParser = require('body-parser');
 var app = express();
 var config = require('./config');
 
-// mongoose.Promise = global.Promise;
-// module.exports = mongoose;
-// mongoose.connect('mongodb://localhost/QR-DB', { useNewUrlParser: true, useUnifiedTopology: true }, function (err, data) {
-//     if (err) {
-//         console.log('Sorry can not connect with mongodb...');
-//     } else if (data) {
-//         console.log('Successfully QR-code-server connected mongodb...');
-//         return;
-//     }
-// });
-// mongoose.set('useFindAndModify', false);
-// mongoose.set('useCreateIndex', true);
+mongoose.Promise = global.Promise;
+module.exports = mongoose;
+mongoose.connect('mongodb://localhost/QR-DB', { useNewUrlParser: true, useUnifiedTopology: true }, function(err, data) {
+    if (err) {
+        console.log('Sorry can not connect with mongodb...');
+    } else if (data) {
+        console.log('Successfully QR-code-server connected mongodb...');
+        return;
+    }
+});
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 // HTTPS
 const host = ip.address();
 var https = require('https');
@@ -68,7 +68,10 @@ fs.readdirSync(models_path).forEach(function(file) {
     if (~file.indexOf('.js')) require(models_path + '/' + file);
 });
 
+app.get('/', function(req, res) {
 
+    res.send('server working');
+});
 // Routes
 require('./routes')(app);
 
