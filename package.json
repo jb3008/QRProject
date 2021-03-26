@@ -16,6 +16,7 @@
   "author": "Elsner Technology Ptv. Ltd.",
   "license": "ISC",
   "dependencies": {
+    "async": "^3.2.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
     "crypto-ts": "^1.0.2",
